@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jules API Interface</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Jules API Interface</h1>
+        <form id="jules-form">
+            <label for="org">GitHub Organization:</label>
+            <input type="text" id="org" name="org" required>
+
+            <label for="repo">GitHub Repository:</label>
+            <input type="text" id="repo" name="repo" required>
+
+            <label for="branch">Starting Branch:</label>
+            <input type="text" id="branch" name="branch" value="main" required>
+
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="prompt">Prompt:</label>
+            <textarea id="prompt" name="prompt" rows="5" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+        <div id="response"></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
