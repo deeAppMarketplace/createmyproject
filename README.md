@@ -88,3 +88,40 @@ The documentation for this project is generated using Sphinx. To build the docum
     ```
 
 4.  **Open the generated documentation** in your browser at `docs/_build/html/index.html`.
+
+## Local development conveniences
+
+You can keep a local `.env` file (already git-ignored) with development secrets. Example `.env`:
+
+```
+JULES_API_KEY=your_jules_api_key_here
+```
+
+The application will automatically load `.env` in local development if `python-dotenv` is installed. Alternatively you can export the variable manually:
+
+```bash
+export JULES_API_KEY='your_jules_api_key'
+```
+
+## Running tests
+
+Run the pytest suite (the tests mock external network calls):
+
+```bash
+source venv/bin/activate
+pip install -r requirements.txt
+pytest -q
+```
+
+## Git hooks (prevent committing .env)
+
+This repository includes a simple pre-commit hook in `.githooks/pre-commit` that prevents accidentally committing a `.env` file.
+
+Enable it locally with:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+After running that command, the pre-commit hook will run automatically when committing.
+
