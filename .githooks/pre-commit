@@ -1,0 +1,12 @@
+#!/bin/sh
+# Prevent committing a .env file by checking staged files
+if git rev-parse --git-dir > /dev/null 2>&1; then
+  STAGED=$(git diff --cached --name-only --diff-filter=ACM)
+  for file in $STAGED; do
+    if [ "$(basename "$file")" = ".env" ]; then
+      echo "Error: Attempting to commit .env. Please remove secrets from the .env file before committing." >&2
+      exit 1
+    fi
+  done
+fi
+exit 0
