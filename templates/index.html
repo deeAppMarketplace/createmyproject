@@ -28,6 +28,21 @@
             <button type="submit">Submit</button>
         </form>
         <div id="response"></div>
+
+        <hr>
+
+        <div id="activities-section" style="display:none;">
+            <h2>Fetch Session Activities</h2>
+            <div id="session-info">
+                <strong>Session ID:</strong> <span id="session-id"></span>
+            </div>
+            <form id="activities-form">
+                <label for="session-id-input">Session ID:</label>
+                <input type="text" id="session-id-input" name="session_id" required>
+                <button type="submit">Fetch Activities</button>
+            </form>
+            <div id="activities-response"></div>
+        </div>
     </div>
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
