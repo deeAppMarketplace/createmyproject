@@ -91,5 +91,23 @@ def favicon():
     return app.send_static_file('favicon.ico')
 
 
+@app.route('/api/jules/<session_id>/activities', methods=['GET'])
+def get_activities(session_id):
+    api_key = os.environ.get('JULES_API_KEY')
+
+    if not api_key:
+        return jsonify({'error': 'JULES_API_KEY not set'}), 500
+
+    headers = {
+        'X-Goog-Api-Key': api_key
+    }
+
+    try:
+        response = requests.get(f'https://jules.googleapis.com/v1alpha/sessions/{session_id}/activities?pageSize=30', headers=headers)
+        response.raise_for_status()
+        return jsonify(response.json())
+    except requests.exceptions.RequestException as e:
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == '__main__':
     app.run(debug=True)
